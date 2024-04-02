@@ -26,10 +26,10 @@ public class ServerConnectionController {
     }
 
     @GetMapping("/current-directory")
-    public String getCurrentDirectory() {
+    public String[] getCurrentDirectory() {
         File directory = new File(".");
-        String absolutePath = directory.getAbsolutePath();
-        return absolutePath;
+        String[] filesAndFolders = directory.list();
+        return filesAndFolders;
     }
 
     @GetMapping("/get-Error")
