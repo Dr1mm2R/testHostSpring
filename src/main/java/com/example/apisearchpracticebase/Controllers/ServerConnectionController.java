@@ -24,6 +24,13 @@ public class ServerConnectionController {
         }
     }
 
+    @GetMapping("/current-directory")
+    public String getCurrentDirectory() {
+        File directory = new File(".");
+        String absolutePath = directory.getAbsolutePath();
+        return absolutePath;
+    }
+
     @GetMapping("/get-Error")
     public ResponseEntity<String> simulateServerError() {
         throw new RuntimeException("Симуляция ошибки");
