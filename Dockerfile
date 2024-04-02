@@ -6,6 +6,9 @@ RUN apt-get update && \
 apt-get install -y openjdk-17-jdk maven && \
 apt-get clean;
 
+RUN mkdir -p /app/uploadedImages/practiceBaseImages
+RUN mkdir -p /app/uploadedImages/profileImages
+
 # Установка рабочей директории
 WORKDIR /app
 
