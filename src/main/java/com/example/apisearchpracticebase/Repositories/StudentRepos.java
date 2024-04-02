@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface StudentRepos extends CrudRepository<Student, Long> {
-    Student findByStudentLoginAndStudentPassword(String studentLogin, String studentPassword);
 
     Optional<Student> findByStudentLogin(String loginText);
 }

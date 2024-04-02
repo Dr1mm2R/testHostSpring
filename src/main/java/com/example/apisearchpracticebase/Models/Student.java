@@ -2,8 +2,6 @@ package com.example.apisearchpracticebase.Models;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "Student")
 public class Student {
@@ -25,12 +23,6 @@ public class Student {
     @Column(name = "Student_Login", nullable = false, unique = true)
     private String studentLogin;
 
-    @Column(name = "Student_Password", nullable = false)
-    private String studentPassword;
-
-    @Column(name = "Internship_Period")
-    private String internshipPeriod;
-
     @Column(name = "IsInternship", nullable = false)
     private boolean isInternship;
 
@@ -45,14 +37,12 @@ public class Student {
     public Student() {
     }
 
-    public Student(Long id, String lastName, String firstName, String middleName, String studentLogin, String studentPassword, String internshipPeriod, boolean isInternship, ResumeStudent resume, PracticeBase practiceBase) {
+    public Student(Long id, String lastName, String firstName, String middleName, String studentLogin, boolean isInternship, ResumeStudent resume, PracticeBase practiceBase) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.middleName = middleName;
         this.studentLogin = studentLogin;
-        this.studentPassword = studentPassword;
-        this.internshipPeriod = internshipPeriod;
         this.isInternship = isInternship;
         this.practiceBase = practiceBase;
         this.resume = resume;
@@ -96,22 +86,6 @@ public class Student {
 
     public void setStudentLogin(String studentLogin) {
         this.studentLogin = studentLogin;
-    }
-
-    public String getStudentPassword() {
-        return studentPassword;
-    }
-
-    public void setStudentPassword(String studentPassword) {
-        this.studentPassword = studentPassword;
-    }
-
-    public String getInternshipPeriod() {
-        return internshipPeriod;
-    }
-
-    public void setInternshipPeriod(String internshipPeriod) {
-        this.internshipPeriod = internshipPeriod;
     }
 
     public boolean isInternship() {

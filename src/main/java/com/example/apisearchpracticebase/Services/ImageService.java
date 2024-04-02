@@ -1,13 +1,8 @@
 package com.example.apisearchpracticebase.Services;
 
-import com.example.apisearchpracticebase.Repositories.PracticeBaseRepos;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;

@@ -24,4 +24,8 @@ public class ServerConnectionController {
         }
     }
 
+    @GetMapping("/get-Error")
+    public ResponseEntity<String> simulateServerError() {
+        throw new RuntimeException("Симуляция ошибки");
+    }
 }

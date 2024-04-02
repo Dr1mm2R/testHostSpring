@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -35,20 +36,8 @@ public class StudentController {
         return studentRepos.findByStudentLogin(loginText);
     }
 
-    @GetMapping("/auth")
-    public ResponseEntity<Student> authenticate(@RequestParam String studentLogin, @RequestParam String studentPassword) {
-        Student student = studentRepos.findByStudentLoginAndStudentPassword(studentLogin, studentPassword);
-
-        if (student != null) {
-            return ResponseEntity.ok(student);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
     @GetMapping("/reg")
-    public ResponseEntity<Student> registration(@RequestParam String studentLogin,
-                                                @RequestParam String studentPassword){
+    public ResponseEntity<Student> registration(@RequestParam String studentLogin){
         String uniqueKey = "tokenUnique";
         Contact emptyContact = new Contact();
         emptyContact.setAddress(uniqueKey);
@@ -77,7 +66,6 @@ public class StudentController {
         student.setLastName("Фамилия");
         student.setMiddleName("Отчество");
         student.setStudentLogin(studentLogin);
-        student.setStudentPassword(studentPassword);
         student.setResume(resumeStudentRepos.findByContact(emptyContact).get());
         studentRepos.save(student);
 
@@ -87,6 +75,7 @@ public class StudentController {
     @PostMapping("/save")
     public ResponseEntity<Student> saveStudentInfo(@RequestBody Student student){
         try{
+            student.getResume().setPhotoStudent(studentRepos.findByStudentLogin(student.getStudentLogin()).get().getResume().getPhotoStudent());
             studentRepos.save(student);
             resumeStudentRepos.save(student.getResume());
             contactRepos.save(student.getResume().getContact());

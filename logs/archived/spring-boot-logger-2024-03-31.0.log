@@ -1,0 +1,4 @@
+2024-03-31 20:20:14,784 INFO [restartedMain] Starting ApiSearchPracticeBaseApplication using Java 18.0.1 with PID 12092 (C:\Users\gusdi\IdeaProjects\ApiSearchPracticeBase\target\classes started by gusdi in C:\Users\gusdi\IdeaProjects\ApiSearchPracticeBase)
+2024-03-31 20:20:14,789 DEBUG [restartedMain] Running with Spring Boot v3.2.3, Spring v6.1.4
+2024-03-31 20:20:14,790 INFO [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2024-03-31 20:20:22,521 INFO [restartedMain] Started ApiSearchPracticeBaseApplication in 8.292 seconds (process running for 10.134)
