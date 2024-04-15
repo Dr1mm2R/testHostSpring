@@ -1,1 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
+    <property name="LOGS" value="./logs"/>
+
+    <appender name="Console"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+            </pattern>
+        </layout>
+    </appender>
+
+    <appender name="RfAppender"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/spring-boot-logger.log</file>
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d %p [%t] %m%n</Pattern>
+        </encoder>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOGS}/archived/spring-boot-logger-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="EMAIL" class="ch.qos.logback.classic.net.SMTPAppender">
+        <smtpHost>smtp.yandex.ru</smtpHost>
+        <smtpPort>465</smtpPort>
+        <to>gusdimus1@gmail.com</to>
+        <from>Drimmer125@ya.ru</from>
+        <smtpUsername>Drimmer125@ya.ru</smtpUsername>
+        <smtpPassword>ikkyrmhyfwnyxicy</smtpPassword>
+        <smtpProtocol>smpts</smtpProtocol>
+        <subject>BAELDUNG: %logger{20} - %msg</subject>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <logger name="com.example.apisearchpracticebase" level="trace" additivity="false">
+        <appender-ref ref="RfAppender"/>
+        <appender-ref ref="Console"/>
+        <appender-ref ref="EMAIL"/>
+    </logger>
+</configuration>
