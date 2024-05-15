@@ -22,7 +22,7 @@ RUN mvn clean package
 FROM openjdk:17-jdk-slim
 
 # Открытие порта 8080 (предполагается, что ваше приложение слушает на этом порту)
-EXPOSE 8080
+EXPOSE 9698
 
 # Установка рабочей директории
 WORKDIR /app
